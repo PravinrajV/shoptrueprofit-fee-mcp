@@ -12,4 +12,6 @@ RUN npm ci --omit=dev --omit=optional --audit=false --fund=false \
     && rm -rf ~/.npm
 COPY --from=builder --chown=myuser:myuser /usr/src/app/dist ./dist
 COPY --chown=myuser:myuser .actor ./.actor
+# Apify Store build: no off-platform links or promotion in outputs (Apify Store Publishing Terms 2.2.4.2). See src/meta.ts.
+ENV STP_DISTRIBUTION=apify
 CMD ["node", "dist/main.js"]

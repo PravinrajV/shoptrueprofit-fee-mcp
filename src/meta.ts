@@ -52,6 +52,28 @@ export const SOURCES: Record<Marketplace, Source[]> = {
 
 const PAGES: Record<Marketplace, string> = { etsy: 'etsy-fee-calculator', ebay: 'ebay-fee-calculator', amazon: 'amazon-fba-fee-calculator' };
 export const calculatorUrl = (m: Marketplace) => `${SITE}/${PAGES[m]}?${UTM}`;
+
+/**
+ * Distribution mode. "default" (GitHub, npm, MCPB, MCP registry, self-hosted) links results to the free calculators.
+ * "apify" (the Apify Store Actor) must not link to or promote anything off the Apify platform (Apify Store Publishing
+ * Terms 2.2.4.2), so it drops calculator_url, the website link and the website wording. Set STP_DISTRIBUTION=apify
+ * (the Actor's Dockerfile does) or =default to force a mode; when unset, running on the Apify platform
+ * (APIFY_IS_AT_HOME=1) selects "apify". Read on every call, so the numbers and the engine are identical in both modes.
+ */
+export type Distribution = 'default' | 'apify';
+export function distribution(env: Record<string, string | undefined> = process.env): Distribution {
+  const d = env.STP_DISTRIBUTION?.trim().toLowerCase();
+  if (d) return d === 'apify' ? 'apify' : 'default';
+  return env.APIFY_IS_AT_HOME === '1' ? 'apify' : 'default';
+}
+export const isApify = () => distribution() === 'apify';
+
+/** Fee-table provenance for a result. On Apify, documentation points to the official marketplace fee page instead. */
+export const feeTableFor = (m: Marketplace): FeeTable => (isApify() ? { ...FEE_TABLES[m], documentation: SOURCES[m][0].url } : FEE_TABLES[m]);
+/** `{ calculator_url }` in the default distribution, nothing on Apify. */
+export const calculatorLink = (m: Marketplace): { calculator_url?: string } => (isApify() ? {} : { calculator_url: calculatorUrl(m) });
+/** Where the engine's own behaviour is referenced in assumptions text. */
+export const engineRef = () => (isApify() ? 'in the ShopTrueProfit fee engine' : 'on shoptrueprofit.com');
 export const MARKET_NAME: Record<Marketplace, string> = { etsy: 'Etsy', ebay: 'eBay', amazon: 'Amazon' };
 
 export const DISCLAIMER = 'Estimate from published fee schedules (see sources and fee_table.verified_on). Marketplaces change fees; your statement is the final word. '

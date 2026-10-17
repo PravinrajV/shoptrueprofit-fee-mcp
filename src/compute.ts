@@ -6,7 +6,7 @@ import { calcEbay, ebayPriceForMargin, EBAY_CATEGORIES, EBAY_PERFORMANCE, EBAY_O
   EBAY_INTL_RATE, EBAY_INSERTION_FEE, type EbayInput, type EbayCategory } from './engine/marketplaces/ebay';
 import { calcAmazon, amazonPriceForMargin, AMZ_CATEGORIES, TIER_NAMES, CLOSING_FEE, PER_ITEM_FEE, PRO_PLAN_MONTHLY, FUEL_SURCHARGE, SURCHARGE_FROM,
   PEAK_FROM, PEAK_TO, type AmzInput, type AmzCategory } from './engine/marketplaces/amazon';
-import { DISCLAIMER, FEE_TABLES, SOURCES, calculatorUrl, todayET, MARKET_NAME, type FeeTable, type Marketplace, type Source } from './meta';
+import { DISCLAIMER, SOURCES, calculatorUrl, calculatorLink, feeTableFor, isApify, engineRef, todayET, MARKET_NAME, type FeeTable, type Marketplace, type Source } from './meta';
 import type { AmazonFeesIn, AmazonProfitIn, AmazonTargetIn, CompareIn, EbayFeesIn, EbayProfitIn, EbayTargetIn, EtsyFeesIn, EtsyProfitIn, EtsyTargetIn } from './schemas';
 
 export interface Line { code: string; label: string; amount: number; basis: string }
@@ -19,14 +19,14 @@ export interface CalcResultOut {
   fees?: { lines: Line[]; total: number; percent_of_revenue: number };
   costs?: { lines: Line[]; total: number };
   profit?: ProfitBlock; pricing?: PricingBlock; details?: Record<string, unknown>; comparison?: Record<string, unknown>;
-  assumptions: string[]; warnings: string[]; fee_table: FeeTable | FeeTable[]; sources: Source[]; calculator_url: string | Record<string, string>; disclaimer: string;
+  assumptions: string[]; warnings: string[]; fee_table: FeeTable | FeeTable[]; sources: Source[]; calculator_url?: string | Record<string, string>; disclaimer: string;
 }
 
 const r2 = (x: number) => Math.round((x + Number.EPSILON) * 100) / 100;
 const pct2 = (ratio: number) => Math.round(ratio * 10000) / 100;
 const fmtPct = (rate: number) => `${+(rate * 100).toFixed(4)}%`;
 const money = (x: number | null, cur = 'USD') => x === null ? 'not reachable' : new Intl.NumberFormat('en-US', { style: 'currency', currency: cur }).format(x);
-const base = (m: Marketplace) => ({ fee_table: FEE_TABLES[m], sources: SOURCES[m], calculator_url: calculatorUrl(m), disclaimer: DISCLAIMER });
+const base = (m: Marketplace) => ({ fee_table: feeTableFor(m), sources: SOURCES[m], ...calculatorLink(m), disclaimer: DISCLAIMER });
 
 /** Highest whole-0.1% margin the solver can reach (0..90), or null if not even break-even is reachable. Uses only the engine's solver. */
 function maxReachable(solve: (marginRatio: number) => number | null): number | null {
@@ -64,7 +64,7 @@ function etsyAssumptions(v: { region: string; offsite_ads_pct: number }): string
     'Sales tax is paid by the buyer and remitted by Etsy: it is not seller revenue, but the payment processing fee is charged on it.',
     'Not included: Etsy Ads (cost-per-click; pass it as ad_spend), Etsy Plus subscription, currency conversion (2.5%), Regulatory Operating Fee (UK/EU/TR sellers), Share & Save credits, shipping label purchases through Etsy (pass as shipping_label_cost), income tax.',
   ];
-  if (reg.cur !== 'USD') a.push(`Amounts are in ${reg.cur}. The ${LISTING_FEE} listing fee and the ${OFFSITE_CAP} Offsite Ads cap are applied in ${reg.cur}, exactly as on shoptrueprofit.com; Etsy bills the listing fee as USD 0.20 converted at the current rate, so the real amount can differ by a few cents.`);
+  if (reg.cur !== 'USD') a.push(`Amounts are in ${reg.cur}. The ${LISTING_FEE} listing fee and the ${OFFSITE_CAP} Offsite Ads cap are applied in ${reg.cur}, exactly as ${engineRef()}; Etsy bills the listing fee as USD 0.20 converted at the current rate, so the real amount can differ by a few cents.`);
   return a;
 }
 function etsyFeeLines(r: ReturnType<typeof calc>, v: { quantity: number; offsite_ads_pct: number; sales_tax_pct: number }): Line[] {
@@ -313,8 +313,8 @@ export function compareMarketplaces(v: CompareIn): CalcResultOut {
       'Each marketplace\'s full assumptions are in comparison.results.<marketplace>.assumptions.',
     ],
     warnings: ranking.filter(x => x.profit < 0).map(x => `${MARKET_NAME[x.marketplace]} loses money at this price.`),
-    fee_table: [FEE_TABLES.etsy, FEE_TABLES.ebay, FEE_TABLES.amazon], sources: [...SOURCES.etsy, ...SOURCES.ebay, ...SOURCES.amazon],
-    calculator_url: { etsy: calculatorUrl('etsy'), ebay: calculatorUrl('ebay'), amazon: calculatorUrl('amazon') }, disclaimer: DISCLAIMER };
+    fee_table: [feeTableFor('etsy'), feeTableFor('ebay'), feeTableFor('amazon')], sources: [...SOURCES.etsy, ...SOURCES.ebay, ...SOURCES.amazon],
+    ...(isApify() ? {} : { calculator_url: { etsy: calculatorUrl('etsy'), ebay: calculatorUrl('ebay'), amazon: calculatorUrl('amazon') } }), disclaimer: DISCLAIMER };
 }
 
 // =========================================================================================== Reference lists

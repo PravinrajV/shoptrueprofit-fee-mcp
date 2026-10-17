@@ -3,7 +3,7 @@
   "actorSpecification": 1,
   "name": "shoptrueprofit-fee-mcp",
   "title": "ShopTrueProfit Fee & Profit MCP: Etsy, eBay, Amazon FBA",
-  "description": "Etsy, eBay and Amazon (FBA + FBM) seller fees, profit, margin, break-even and target-margin prices for AI agents. MCP server (Standby) or batch runs. Same fee engine as shoptrueprofit.com. Itemized fees, sources and fee-table dates on every result.",
+  "description": "Etsy, eBay and Amazon (FBA + FBM) seller fees, profit, margin, break-even and target-margin prices for AI agents. MCP server (Standby) or batch runs. ShopTrueProfit fee engine. Itemized fees, sources and fee-table dates on every result.",
   "version": "1.0",
   "buildTag": "latest",
   "usesStandbyMode": true,
@@ -11,6 +11,7 @@
   "minMemoryMbytes": 256,
   "maxMemoryMbytes": 512,
   "dockerfile": "../Dockerfile",
+  "readme": "./README.md",
   "input": "./input_schema.json",
   "storages": {
     "dataset": "./dataset_schema.json"

@@ -116,7 +116,7 @@ Not modelled (each result says so): eBay Store subscription rates; Etsy Ads cost
 
 ```bash
 npm install
-npm run typecheck && npm run build && npm test   # 117 tests: cross-checks, schemas, stdio + HTTP protocol, Apify SDK, packaging
+npm run typecheck && npm run build && npm test   # 125 tests: cross-checks, schemas, stdio + HTTP protocol, Apify SDK, distribution modes, packaging
 npm run sync-engine                              # maintainers: re-copy the engine from the ShopTrueProfit app after a fee update
 npm run gen-reference                            # regenerate docs/tool-reference.md
 npm run pack:mcpb                                # build build/shoptrueprofit-fee-mcp-<version>.mcpb (local Claude Desktop / Smithery bundle)

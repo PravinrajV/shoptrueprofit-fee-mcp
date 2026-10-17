@@ -5,7 +5,7 @@ import type { Server } from 'node:http';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { createServer } from './server';
 import { freeBiller, type Biller } from './billing';
-import { SERVER_NAME, SERVER_VERSION, SITE } from './meta';
+import { SERVER_NAME, SERVER_VERSION, SITE, isApify } from './meta';
 import { TOOLS } from './tools';
 import { serverCard } from './server-card';
 
@@ -26,7 +26,7 @@ export function createHttpApp({ biller = freeBiller, log = () => {} }: HttpOptio
 
   app.get('/', (req: Request, res: Response) => {
     if (req.headers['x-apify-container-server-readiness-probe']) { res.type('text').send('ok\n'); return; }
-    res.json({ name: SERVER_NAME, version: SERVER_VERSION, mcp_endpoint: '/mcp', transport: 'streamable-http', tools: TOOLS.map(t => t.name), website: SITE });
+    res.json({ name: SERVER_NAME, version: SERVER_VERSION, mcp_endpoint: '/mcp', transport: 'streamable-http', tools: TOOLS.map(t => t.name), ...(isApify() ? {} : { website: SITE }) });
   });
   app.get('/health', (_req, res) => { res.json({ ok: true, version: SERVER_VERSION }); });
   app.get('/.well-known/mcp/server-card.json', async (_req, res) => {
