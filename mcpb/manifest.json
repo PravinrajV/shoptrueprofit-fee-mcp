@@ -1,0 +1,111 @@
+{
+  "manifest_version": "0.3",
+  "name": "shoptrueprofit-fee-mcp",
+  "display_name": "ShopTrueProfit Fee & Profit",
+  "version": "1.0.0",
+  "description": "Etsy, eBay and Amazon FBA/FBM seller fees, profit, margin and target price, with itemized breakdowns and sources.",
+  "long_description": "Exact marketplace fee math for sellers, using the same engine as the free calculators on shoptrueprofit.com. Every result includes an itemized fee breakdown, the assumptions used, the fee-table version and verification date, official source links and a link to the matching free calculator. Runs locally; no account, API key or network access needed. Not affiliated with Etsy, eBay or Amazon.",
+  "author": {
+    "name": "ShopTrueProfit",
+    "url": "https://shoptrueprofit.com"
+  },
+  "homepage": "https://shoptrueprofit.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PravinrajV/shoptrueprofit-fee-mcp"
+  },
+  "documentation": "https://shoptrueprofit.com/guides",
+  "support": "https://github.com/PravinrajV/shoptrueprofit-fee-mcp/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/index.mjs"
+      ],
+      "env": {}
+    }
+  },
+  "tools": [
+    {
+      "name": "etsy_fees",
+      "description": "Etsy fees for one order"
+    },
+    {
+      "name": "ebay_fees",
+      "description": "eBay fees for one order"
+    },
+    {
+      "name": "amazon_fees",
+      "description": "Amazon FBA or FBM fees for one unit"
+    },
+    {
+      "name": "etsy_profit",
+      "description": "Etsy profit and margin"
+    },
+    {
+      "name": "ebay_profit",
+      "description": "eBay profit and margin"
+    },
+    {
+      "name": "amazon_profit",
+      "description": "Amazon profit and margin (FBA or FBM)"
+    },
+    {
+      "name": "etsy_target_price",
+      "description": "Etsy break-even and target-margin price"
+    },
+    {
+      "name": "ebay_target_price",
+      "description": "eBay break-even and target-margin price"
+    },
+    {
+      "name": "amazon_target_price",
+      "description": "Amazon break-even and target-margin price"
+    },
+    {
+      "name": "compare_marketplaces",
+      "description": "Compare Etsy, eBay and Amazon for one product"
+    },
+    {
+      "name": "list_ebay_categories",
+      "description": "List eBay fee categories"
+    },
+    {
+      "name": "list_amazon_categories",
+      "description": "List Amazon referral fee categories"
+    },
+    {
+      "name": "list_etsy_regions",
+      "description": "List Etsy Payments regions"
+    }
+  ],
+  "tools_generated": false,
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "etsy",
+    "ebay",
+    "amazon",
+    "fba",
+    "fee-calculator",
+    "profit-calculator",
+    "ecommerce"
+  ],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=20.0.0"
+    }
+  },
+  "privacy_policies": [
+    "https://shoptrueprofit.com/#privacy"
+  ]
+}

@@ -1,0 +1,17 @@
+node_modules
+dist
+storage
+apify_storage
+crawlee_storage
+.git
+coverage
+*.log
+docs
+build
+mcpb
+skills
+.cursor-plugin
+mcp.json
+glama.json
+assets
+tests

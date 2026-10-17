@@ -1,0 +1,63 @@
+{
+  "title": "ShopTrueProfit Fee & Profit (batch mode)",
+  "description": "Standard runs compute one or more calculations and save each result to the dataset. For AI agents, use the MCP endpoint instead (Standby): https://<this-actor-standby-url>/mcp. Each successful calculation is one \"fee-calculation\" event; list_* tools and rejected inputs are free.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "tool": {
+      "title": "Tool",
+      "type": "string",
+      "description": "Which calculation to run. Use \"calls\" below to run several in one go.",
+      "editor": "select",
+      "enum": [
+        "etsy_fees",
+        "ebay_fees",
+        "amazon_fees",
+        "etsy_profit",
+        "ebay_profit",
+        "amazon_profit",
+        "etsy_target_price",
+        "ebay_target_price",
+        "amazon_target_price",
+        "compare_marketplaces",
+        "list_ebay_categories",
+        "list_amazon_categories",
+        "list_etsy_regions"
+      ],
+      "prefill": "compare_marketplaces",
+      "nullable": true
+    },
+    "arguments": {
+      "title": "Arguments",
+      "type": "object",
+      "description": "Arguments for the tool, exactly as the MCP tool takes them. Percent fields are percents (8.25 = 8.25%); money is in USD (or the Etsy region currency). See the README for every field.",
+      "editor": "json",
+      "prefill": {
+        "price": 29.99,
+        "shipping_charged": 5,
+        "item_cost": 9,
+        "shipping_label_cost": 4.5,
+        "target_margin_pct": 30,
+        "amazon": {
+          "category": "home-kitchen",
+          "fulfillment": "fba",
+          "length_in": 10,
+          "width_in": 6,
+          "height_in": 3,
+          "weight_lb": 1.2,
+          "inbound_cost": 0.5
+        }
+      },
+      "nullable": true
+    },
+    "calls": {
+      "title": "Batch of calls (optional)",
+      "type": "array",
+      "description": "Run many calculations in one run: [{\"tool\": \"etsy_profit\", \"arguments\": {...}}, ...]. Up to 1,000 per run. Each result is one dataset item.",
+      "editor": "json",
+      "prefill": [],
+      "nullable": true
+    }
+  },
+  "required": []
+}

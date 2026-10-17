@@ -1,0 +1,11 @@
+{
+  "note": "Verbatim copy of the ShopTrueProfit fee engine. Do not edit; run npm run sync-engine.",
+  "app": "etsy-profit-dashboard/src",
+  "syncedAt": "2026-10-17T06:13:40.686Z",
+  "files": {
+    "feecalc.ts": "76c7f4d8b9136ed3852cbff4318e343f99c749eead3c53711a2a82b782def49a",
+    "marketplaces/ebay.ts": "28e5369ec48f1a3052c5008063a90babb8aa6e6895880d24b3c6f20a0d56ed42",
+    "marketplaces/amazon.ts": "8d759d864411f555ecf198d405f24c04fe6708fcda8038f7929498c4baa95353",
+    "marketplaces/solve.ts": "0c080d179dccd8e42e131c304dbb171a0221297a48824441370b3a62a015947a"
+  }
+}

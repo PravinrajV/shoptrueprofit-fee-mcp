@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "shoptrueprofit-fees": {
+      "command": "npx",
+      "args": ["-y", "shoptrueprofit-fee-mcp@1.0.0"]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "shoptrueprofit-fees",
+  "version": "1.0.0",
+  "description": "Etsy, eBay and Amazon FBA/FBM seller fees, profit, margin and target price for your agent, with itemized breakdowns and official sources. Same engine as shoptrueprofit.com.",
+  "author": {
+    "name": "ShopTrueProfit"
+  },
+  "homepage": "https://shoptrueprofit.com",
+  "repository": "https://github.com/PravinrajV/shoptrueprofit-fee-mcp",
+  "license": "MIT",
+  "keywords": [
+    "etsy",
+    "ebay",
+    "amazon",
+    "fba",
+    "fees",
+    "profit",
+    "pricing",
+    "ecommerce"
+  ],
+  "logo": "assets/icon-512.png"
+}

@@ -1,0 +1,25 @@
+# dependencies and build output (rebuilt by `npm run build` / `npm run pack:mcpb`)
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+# Apify / Crawlee local storage
+storage/
+apify_storage/
+crawlee_storage/
+# secrets and local config
+.env
+.env.*
+*.pem
+*.key
+.npmrc
+# logs and OS files
+*.log
+.DS_Store
+Thumbs.db
+# internal launch notes (kept local, not published)
+docs/publish-checklist.md
+docs/pricing.md
+docs/listings/README.md
+docs/listings/SUBMIT.md

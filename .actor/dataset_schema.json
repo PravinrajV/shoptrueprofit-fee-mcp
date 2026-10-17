@@ -1,0 +1,70 @@
+{
+  "$schema": "https://apify.com/schemas/v1/dataset.ide.json",
+  "actorSpecification": 1,
+  "fields": {
+    "type": "object",
+    "properties": {
+      "index": {
+        "type": "integer"
+      },
+      "tool": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "ok": {
+        "type": "boolean"
+      },
+      "result": {
+        "type": "object"
+      },
+      "error": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "index",
+      "ok"
+    ]
+  },
+  "views": {
+    "overview": {
+      "title": "Results",
+      "transformation": {
+        "fields": [
+          "index",
+          "tool",
+          "ok",
+          "result.summary",
+          "error"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "index": {
+            "label": "#",
+            "format": "number"
+          },
+          "tool": {
+            "label": "Tool",
+            "format": "text"
+          },
+          "ok": {
+            "label": "OK",
+            "format": "boolean"
+          },
+          "result.summary": {
+            "label": "Summary",
+            "format": "text"
+          },
+          "error": {
+            "label": "Error",
+            "format": "text"
+          }
+        }
+      }
+    }
+  }
+}

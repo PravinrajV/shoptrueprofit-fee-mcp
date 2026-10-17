@@ -1,0 +1,67 @@
+{
+  "name": "shoptrueprofit-fee-mcp",
+  "version": "1.0.0",
+  "description": "Etsy, eBay and Amazon FBA/FBM seller fee, profit, margin and target-price MCP server, using the same engine as shoptrueprofit.com.",
+  "type": "module",
+  "license": "MIT",
+  "author": "ShopTrueProfit (https://shoptrueprofit.com)",
+  "homepage": "https://shoptrueprofit.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PravinrajV/shoptrueprofit-fee-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PravinrajV/shoptrueprofit-fee-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "etsy",
+    "ebay",
+    "amazon",
+    "fba",
+    "fee-calculator",
+    "profit-calculator",
+    "ecommerce",
+    "apify"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "stp-fee-mcp": "dist/stdio.js"
+  },
+  "files": [
+    "dist/stdio.js",
+    "dist/http.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "sync-engine": "node scripts/sync-engine.mjs",
+    "check-engine": "node scripts/sync-engine.mjs --check",
+    "start": "node dist/main.js",
+    "start:stdio": "node dist/stdio.js",
+    "start:http": "node dist/http.js",
+    "test": "vitest run",
+    "test:all": "npm run typecheck && npm run build && vitest run",
+    "pack:mcpb": "node scripts/pack-mcpb.mjs",
+    "gen-reference": "node scripts/gen-reference.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "apify": "3.7.2",
+    "express": "5.3.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^20.19.0",
+    "esbuild": "0.28.2",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.7"
+  },
+  "mcpName": "com.shoptrueprofit/fee-mcp"
+}

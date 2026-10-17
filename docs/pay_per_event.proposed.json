@@ -1,0 +1,7 @@
+{
+  "fee-calculation": {
+    "eventTitle": "Fee calculation",
+    "eventDescription": "One successful fee, profit, target-price or comparison calculation (one MCP tool call or one batch item). Reference lists and rejected inputs are free.",
+    "eventPriceUsd": 0.005
+  }
+}
