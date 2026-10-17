@@ -9,7 +9,7 @@ export interface ToolDef { name: string; title: string; description: string; inp
 export const COMMON = 'Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.';
 /** Apify Store wording: no website, no calculator link (Apify Store Publishing Terms 2.2.4.2). */
 export const COMMON_APIFY = 'Uses the ShopTrueProfit fee engine. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, and official source URLs. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.';
-const PCT = 'Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in whole cents.';
+const PCT = 'Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in dollars with up to 2 decimals (24.99 = $24.99).';
 
 export const TOOLS: ToolDef[] = [
   { name: 'etsy_fees', title: 'Etsy fees for one order', charged: true, input: S.etsyFeesInput, run: C.etsyFees,

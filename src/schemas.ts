@@ -17,12 +17,12 @@ export const AMAZON_CATEGORY_IDS = ids(AMZ_CATEGORIES);
 const enumOf = (field: string, values: [string, ...string[]], hint: string) =>
   z.enum(values, { error: iss => `${field} must be one of: ${values.join(', ')}${hint ? ` (${hint})` : ''}. Got ${JSON.stringify(iss.input)}.` });
 
-/** Money amount in whole cents, 0..1,000,000 (or > 0 when `positive`). */
+/** Money amount in dollars (at most 2 decimals, i.e. whole cents), 0..1,000,000 (or > 0 when `positive`). */
 function money(field: string, description: string, positive = false) {
   let s = z.number({ error: iss => `${field} must be a number (got ${iss.input === undefined ? 'nothing' : typeof iss.input}).` });
   s = positive ? s.gt(0, { error: `${field} must be greater than 0.` }) : s.min(0, { error: `${field} cannot be negative.` });
   return s.max(MAX_MONEY, { error: `${field} must be at most ${MAX_MONEY.toLocaleString('en-US')}.` })
-    .multipleOf(0.01, { error: `${field} must be in whole cents (at most 2 decimal places), e.g. 24.99.` })
+    .multipleOf(0.01, { error: `${field} must be in dollars with at most 2 decimal places, e.g. 24.99.` })
     .describe(description);
 }
 function pct(field: string, description: string, max: number) {

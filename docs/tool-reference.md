@@ -20,7 +20,7 @@ Generated from the tool registry by `node scripts/gen-reference.mjs`. Do not edi
 
 ## `etsy_fees`
 
-Calculate Etsy seller fees for one order: listing ($0.20/unit), 6.5% transaction, payment processing (by Etsy Payments region, charged on the total incl. sales tax) and Offsite Ads (12%/15%, capped). Use when you need what Etsy takes from a sale; use etsy_profit when you also know your costs. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in whole cents. Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
+Calculate Etsy seller fees for one order: listing ($0.20/unit), 6.5% transaction, payment processing (by Etsy Payments region, charged on the total incl. sales tax) and Offsite Ads (12%/15%, capped). Use when you need what Etsy takes from a sale; use etsy_profit when you also know your costs. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in dollars with up to 2 decimals (24.99 = $24.99). Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
 
 | Argument | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -35,7 +35,7 @@ Calculate Etsy seller fees for one order: listing ($0.20/unit), 6.5% transaction
 
 ## `ebay_fees`
 
-Calculate eBay.com (US) seller fees for one order: category final value fee (tiered per item, on item + shipping + sales tax), per-order fee ($0.30/$0.40), Promoted Listings General ad rate, international fee, seller-performance surcharges and insertion fee. Rates for sellers without a paid Store subscription. Call list_ebay_categories for category ids. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in whole cents. Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
+Calculate eBay.com (US) seller fees for one order: category final value fee (tiered per item, on item + shipping + sales tax), per-order fee ($0.30/$0.40), Promoted Listings General ad rate, international fee, seller-performance surcharges and insertion fee. Rates for sellers without a paid Store subscription. Call list_ebay_categories for category ids. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in dollars with up to 2 decimals (24.99 = $24.99). Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
 
 | Argument | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -72,7 +72,7 @@ Calculate Amazon.com (US) fees for one unit, FBA or FBM: referral fee (by catego
 
 ## `etsy_profit`
 
-Calculate profit, margin and break-even price for an Etsy order from price, quantity, shipping, item cost, label/packaging cost and ads (Offsite Ads rate plus any Etsy Ads spend you attribute to the order). Margin = profit / seller revenue (sales tax excluded). Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in whole cents. Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
+Calculate profit, margin and break-even price for an Etsy order from price, quantity, shipping, item cost, label/packaging cost and ads (Offsite Ads rate plus any Etsy Ads spend you attribute to the order). Margin = profit / seller revenue (sales tax excluded). Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in dollars with up to 2 decimals (24.99 = $24.99). Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
 
 | Argument | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -90,7 +90,7 @@ Calculate profit, margin and break-even price for an Etsy order from price, quan
 
 ## `ebay_profit`
 
-Calculate profit, margin and break-even price for an eBay.com (US) order from price, quantity, shipping, item cost, label cost and ads (Promoted Listings General rate plus any other ad spend). Margin = profit / seller revenue (sales tax excluded). Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in whole cents. Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
+Calculate profit, margin and break-even price for an eBay.com (US) order from price, quantity, shipping, item cost, label cost and ads (Promoted Listings General rate plus any other ad spend). Margin = profit / seller revenue (sales tax excluded). Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in dollars with up to 2 decimals (24.99 = $24.99). Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
 
 | Argument | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -134,7 +134,7 @@ Calculate profit, margin and break-even price for one unit sold on Amazon.com (U
 
 ## `etsy_target_price`
 
-Find the lowest Etsy item price (per unit, before discount) that breaks even and the lowest that reaches target_margin_pct, given shipping, costs and ads. Also shows fees and profit at the target price, or the highest reachable margin if the target is impossible. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in whole cents. Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
+Find the lowest Etsy item price (per unit, before discount) that breaks even and the lowest that reaches target_margin_pct, given shipping, costs and ads. Also shows fees and profit at the target price, or the highest reachable margin if the target is impossible. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in dollars with up to 2 decimals (24.99 = $24.99). Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
 
 | Argument | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -152,7 +152,7 @@ Find the lowest Etsy item price (per unit, before discount) that breaks even and
 
 ## `ebay_target_price`
 
-Find the lowest eBay.com (US) item price that breaks even and the lowest that reaches target_margin_pct, handling fee steps (the $10 per-order threshold and whole-amount category bands). Also shows fees and profit at the target price, or the highest reachable margin if the target is impossible. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in whole cents. Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
+Find the lowest eBay.com (US) item price that breaks even and the lowest that reaches target_margin_pct, handling fee steps (the $10 per-order threshold and whole-amount category bands). Also shows fees and profit at the target price, or the highest reachable margin if the target is impossible. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in dollars with up to 2 decimals (24.99 = $24.99). Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
 
 | Argument | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -196,7 +196,7 @@ Find the lowest Amazon.com (US) item price that breaks even and the lowest that 
 
 ## `compare_marketplaces`
 
-Compare the same product on Etsy, eBay and Amazon: fees, profit, margin and break-even price on each, ranked by profit, plus the price needed on each for target_margin_pct if given. The amazon object (category, fulfillment, and dimensions/weight for FBA) is required. One call, one charge. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in whole cents. Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
+Compare the same product on Etsy, eBay and Amazon: fees, profit, margin and break-even price on each, ranked by profit, plus the price needed on each for target_margin_pct if given. The amazon object (category, fulfillment, and dimensions/weight for FBA) is required. One call, one charge. Percent arguments (*_pct) are percents: 8.25 means 8.25%. Money is in dollars with up to 2 decimals (24.99 = $24.99). Uses the same fee engine as the free calculators on shoptrueprofit.com. Returns an itemized fee breakdown, the assumptions used, the fee table version and date, official source URLs and a link to the matching free calculator. Inputs are validated strictly: invalid or unknown arguments are rejected with a message naming the field, never silently adjusted.
 
 | Argument | Type | Required | Default | Description |
 |---|---|---|---|---|

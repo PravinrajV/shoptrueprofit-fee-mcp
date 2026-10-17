@@ -14,7 +14,7 @@ describe('rejects bad input with a clear, field-specific message', () => {
     ['etsy_fees', { price: 0 }, /price must be greater than 0/],
     ['etsy_fees', { price: -5 }, /price must be greater than 0/],
     ['etsy_fees', { price: '25' }, /price must be a number/],
-    ['etsy_fees', { price: 24.999 }, /whole cents/],
+    ['etsy_fees', { price: 24.999 }, /at most 2 decimal places/],
     ['etsy_fees', { price: 2_000_000 }, /at most 1,000,000/],
     ['etsy_fees', { price: 25, quantity: 1.5 }, /whole number/],
     ['etsy_fees', { price: 25, quantity: 0 }, /at least 1/],

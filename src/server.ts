@@ -31,14 +31,14 @@ const listOutputApify = listOutput.omit({ calculator_url: true });
 export const INSTRUCTIONS = `ShopTrueProfit Fee & Profit: seller fee, profit and pricing math for Etsy, eBay.com (US) and Amazon.com (US, FBA and FBM), using the same engine as the free calculators at ${SITE}.
 - Fees only: etsy_fees, ebay_fees, amazon_fees. With costs: *_profit. Price to charge: *_target_price. Which marketplace pays most: compare_marketplaces.
 - Category and region ids: list_ebay_categories, list_amazon_categories, list_etsy_regions (free).
-- Percent arguments are percents (8.25 = 8.25%). Money is in whole cents. Amazon FBA needs package length_in, width_in, height_in and weight_lb.
+- Percent arguments are percents (8.25 = 8.25%). Money is in dollars with up to 2 decimals (24.99 = $24.99). Amazon FBA needs package length_in, width_in, height_in and weight_lb.
 - Every result includes summary, itemized fee lines, assumptions, warnings, fee_table (version + verified_on date), sources and calculator_url. Quote the summary and mention material assumptions to the user.`;
 
 /** Apify Store instructions: same guidance, no website link (Apify Store Publishing Terms 2.2.4.2). */
 export const INSTRUCTIONS_APIFY = `ShopTrueProfit Fee & Profit: seller fee, profit and pricing math for Etsy, eBay.com (US) and Amazon.com (US, FBA and FBM), using the ShopTrueProfit fee engine.
 - Fees only: etsy_fees, ebay_fees, amazon_fees. With costs: *_profit. Price to charge: *_target_price. Which marketplace pays most: compare_marketplaces.
 - Category and region ids: list_ebay_categories, list_amazon_categories, list_etsy_regions (free).
-- Percent arguments are percents (8.25 = 8.25%). Money is in whole cents. Amazon FBA needs package length_in, width_in, height_in and weight_lb.
+- Percent arguments are percents (8.25 = 8.25%). Money is in dollars with up to 2 decimals (24.99 = $24.99). Amazon FBA needs package length_in, width_in, height_in and weight_lb.
 - Every result includes summary, itemized fee lines, assumptions, warnings, fee_table (version + verified_on date) and official sources. Quote the summary and mention material assumptions to the user.`;
 
 /** Instructions for the current distribution (see meta.distribution). */
