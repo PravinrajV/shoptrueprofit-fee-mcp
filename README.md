@@ -29,7 +29,7 @@ It runs the **same fee engine as the free calculators on [shoptrueprofit.com](ht
 | `list_amazon_categories` | Amazon category ids, referral rates, minimums, size tiers | free |
 | `list_etsy_regions` | Etsy Payments regions, currencies, processing rates | free |
 
-Every argument is documented in [docs/tool-reference.md](docs/tool-reference.md). Percent arguments are percents (`8.25` means 8.25%) and money is in whole cents.
+Every argument is documented in the [tool reference](https://github.com/PravinrajV/shoptrueprofit-fee-mcp/blob/main/docs/tool-reference.md). Money amounts are in dollars with at most 2 decimal places (`24.99` means $24.99), and percent arguments are percents (`8.25` means 8.25%).
 
 ## Example
 
